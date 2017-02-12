@@ -39,12 +39,13 @@
 //LED0
 #define TASK_DELAY        33    /**< Task delay. 1/66ms=15.15Hz */
 //LED1
-#define TIMER_PERIOD      40   	//12.5 Hz
 #define TASK_DELAY_1			40 		//1/80ms =  12.5Hz
 //LED2
-#define TASK_DELAY_2			50 		//1/100ms =  10Hz
+#define TASK_DELAY_2			56 		//1/112ms =  ~9Hz
 //LED3
 #define TASK_DELAY_3			72		//1/144ms = 6.94Hz
+
+#define TASK_DELAY_4			16		//1/32ms = 31.25Hz
 
 /**< Timer period. LED1 timer will expire after 1000 ms */
 
@@ -97,6 +98,18 @@ static void vLed3Function (void *pvParameter)
     }
 }
 
+static void vLed4Function (void *pvParameter)
+{
+    UNUSED_PARAMETER(pvParameter);
+    for( ;; )
+    {
+        nrf_gpio_pin_toggle(BSP_LED_1);
+        vTaskDelay(TASK_DELAY_4); // Delay a task for a given number of ticks
+        // Tasks must be implemented to never return...
+    }
+}
+
+
 /**@brief The function to call when the LED1 FreeRTOS timer expires.
  *
  * @param[in] pvParameter   Pointer that will be used as the parameter for the timer.
@@ -130,10 +143,11 @@ int main(void)
     nrf_gpio_pin_set(BSP_LED_2);
     nrf_gpio_pin_set(BSP_LED_3);
 
-    UNUSED_VARIABLE(xTaskCreate( vLed0Function, "L0", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed0Handle ));    // LED0 task creation
-		UNUSED_VARIABLE(xTaskCreate( vLed1Function, "L1", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed1Handle ));
-		UNUSED_VARIABLE(xTaskCreate( vLed2Function, "L2", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed2Handle ));
-		UNUSED_VARIABLE(xTaskCreate( vLed3Function, "L3", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed3Handle ));
+    //UNUSED_VARIABLE(xTaskCreate( vLed0Function, "L0", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed0Handle ));    // LED0 task creation
+	  //UNUSED_VARIABLE(xTaskCreate( vLed1Function, "L1", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed1Handle ));
+		//UNUSED_VARIABLE(xTaskCreate( vLed2Function, "L2", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed2Handle ));
+		//UNUSED_VARIABLE(xTaskCreate( vLed3Function, "L3", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed3Handle ));
+		UNUSED_VARIABLE(xTaskCreate( vLed4Function, "L3", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed3Handle ));  
 		
 		
 		//xLed1Handle = xTimerCreate( "L1", TIMER_PERIOD, pdTRUE, NULL, vLed1Callback );                                 // LED1 timer creation
