@@ -44,9 +44,9 @@
 #define TASK_DELAY_2			56 		//1/112ms =  ~9Hz
 //LED3
 #define TASK_DELAY_3			72		//1/144ms = 6.94Hz
-
-#define TASK_DELAY_4			16		//1/32ms = 31.25Hz
-
+	//The one we are using today:
+//#define TASK_DELAY_4			16		//1/32ms = 31.25Hz
+	#define TASK_DELAY_4			42		//1/2*xms = __Hz
 /**< Timer period. LED1 timer will expire after 1000 ms */
 
 /**@brief LED0 task entry function.
@@ -134,14 +134,14 @@ int main(void)
     APP_ERROR_CHECK(err_code);
 
     // Configure LED-pins as outputs
-    nrf_gpio_cfg_output(BSP_LED_0);
+    //nrf_gpio_cfg_output(BSP_LED_0);
     nrf_gpio_cfg_output(BSP_LED_1);
-    nrf_gpio_cfg_output(BSP_LED_2);
-    nrf_gpio_cfg_output(BSP_LED_3);
-    nrf_gpio_pin_set(BSP_LED_0);
+    //nrf_gpio_cfg_output(BSP_LED_2);
+    //nrf_gpio_cfg_output(BSP_LED_3);
+    //nrf_gpio_pin_set(BSP_LED_0);
     nrf_gpio_pin_set(BSP_LED_1);
-    nrf_gpio_pin_set(BSP_LED_2);
-    nrf_gpio_pin_set(BSP_LED_3);
+    //nrf_gpio_pin_set(BSP_LED_2);
+    //nrf_gpio_pin_set(BSP_LED_3);
 
     //UNUSED_VARIABLE(xTaskCreate( vLed0Function, "L0", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed0Handle ));    // LED0 task creation
 	  //UNUSED_VARIABLE(xTaskCreate( vLed1Function, "L1", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed1Handle ));
