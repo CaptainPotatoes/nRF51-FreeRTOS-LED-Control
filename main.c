@@ -46,7 +46,7 @@
 #define TASK_DELAY_3			72		//1/144ms = 6.94Hz
 	//The one we are using today:
 //#define TASK_DELAY_4			16		//1/32ms = 31.25Hz
-	#define TASK_DELAY_4			42		//1/2*xms = __Hz
+	#define TASK_DELAY_4			29		//1/2*xms = __Hz
 /**< Timer period. LED1 timer will expire after 1000 ms */
 
 /**@brief LED0 task entry function.
