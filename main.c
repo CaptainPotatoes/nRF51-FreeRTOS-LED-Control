@@ -36,6 +36,13 @@
 
 //#include "nrf_delay.h"
 
+/** LED PIN DEFINITIONS: **/
+#define CUSTOM_LED_1 12
+#define CUSTOM_LED_2 14
+#define CUSTOM_LED_3 15
+#define CUSTOM_LED_4 16
+
+
 //LED0
 #define TASK_DELAY        50    /**< Task delay - 10 Hz */
 //LED1
@@ -63,7 +70,7 @@ static void vLed0Function (void *pvParameter)
     UNUSED_PARAMETER(pvParameter);
     for( ;; )
     {
-        nrf_gpio_pin_toggle(BSP_LED_0);
+        nrf_gpio_pin_toggle(CUSTOM_LED_1);
         vTaskDelay(TASK_DELAY); // Delay a task for a given number of ticks
 
         // Tasks must be implemented to never return...
@@ -75,7 +82,7 @@ static void vLed1Function (void *pvParameter)
     UNUSED_PARAMETER(pvParameter);
     for( ;; )
     {
-        nrf_gpio_pin_toggle(BSP_LED_1);
+        nrf_gpio_pin_toggle(CUSTOM_LED_2);
         vTaskDelay(TASK_DELAY_1); // Delay a task for a given number of ticks
         // Tasks must be implemented to never return...
     }
@@ -86,7 +93,7 @@ static void vLed2Function (void *pvParameter)
     UNUSED_PARAMETER(pvParameter);
     for( ;; )
     {
-        nrf_gpio_pin_toggle(BSP_LED_2);
+        nrf_gpio_pin_toggle(CUSTOM_LED_3);
         vTaskDelay(TASK_DELAY_2); // Delay a task for a given number of ticks
         // Tasks must be implemented to never return...
     }
@@ -97,7 +104,7 @@ static void vLed3Function (void *pvParameter)
     UNUSED_PARAMETER(pvParameter);
     for( ;; )
     {
-        nrf_gpio_pin_toggle(BSP_LED_3);
+        nrf_gpio_pin_toggle(CUSTOM_LED_4);
         vTaskDelay(TASK_DELAY_3); // Delay a task for a given number of ticks
         // Tasks must be implemented to never return...
     }
@@ -108,7 +115,7 @@ static void vLed3Function (void *pvParameter)
     UNUSED_PARAMETER(pvParameter);
     for( ;; )
     {
-        nrf_gpio_pin_toggle(BSP_LED_1);
+        nrf_gpio_pin_toggle(CUSTOM_LED_2);
         vTaskDelay(TASK_DELAY_4); // Delay a task for a given number of ticks
         // Tasks must be implemented to never return...
     }
@@ -122,7 +129,7 @@ static void vLed3Function (void *pvParameter)
 static void vLed1Callback (void *pvParameter)
 {
     UNUSED_PARAMETER(pvParameter);
-    nrf_gpio_pin_toggle(BSP_LED_1);
+    nrf_gpio_pin_toggle(CUSTOM_LED_2);
 } */
 
 
@@ -139,14 +146,14 @@ int main(void)
     APP_ERROR_CHECK(err_code);
 
     // Configure LED-pins as outputs
-    nrf_gpio_cfg_output(BSP_LED_0);
-    nrf_gpio_cfg_output(BSP_LED_1);
-    nrf_gpio_cfg_output(BSP_LED_2);
-    nrf_gpio_cfg_output(BSP_LED_3);
-    nrf_gpio_pin_set(BSP_LED_0);
-    nrf_gpio_pin_set(BSP_LED_1);
-    nrf_gpio_pin_set(BSP_LED_2);
-    nrf_gpio_pin_set(BSP_LED_3);
+    nrf_gpio_cfg_output(CUSTOM_LED_1);
+    nrf_gpio_cfg_output(CUSTOM_LED_2);
+    nrf_gpio_cfg_output(CUSTOM_LED_3);
+    nrf_gpio_cfg_output(CUSTOM_LED_4);
+    nrf_gpio_pin_set(CUSTOM_LED_1);
+    nrf_gpio_pin_set(CUSTOM_LED_2);
+    nrf_gpio_pin_set(CUSTOM_LED_3);
+    nrf_gpio_pin_set(CUSTOM_LED_4);
 
     UNUSED_VARIABLE(xTaskCreate( vLed0Function, "L0", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed0Handle ));    // LED0 task creation
 	  UNUSED_VARIABLE(xTaskCreate( vLed1Function, "L1", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed1Handle ));
