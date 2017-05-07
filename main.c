@@ -41,24 +41,14 @@
 #define CUSTOM_LED_2 14
 #define CUSTOM_LED_3 15
 #define CUSTOM_LED_4 16
-
-
 //LED0
 #define TASK_DELAY        50    /**< Task delay - 10 Hz */
 //LED1
-	//#define TASK_DELAY_1			50		//1/2*xms = 10Hz
-	#define TASK_DELAY_1			40		//1/2*xms = 12.5Hz
-	//#define TASK_DELAY_1			33		//1/2*xms = 15.152Hz
-	//#define TASK_DELAY_1			30		//1/2*xms = 16.666Hz
-	//#define TASK_DELAY_1			29		//1/2*xms = 17.24Hz
+#define TASK_DELAY_1			40		//1/2*40ms = 12.5Hz
 //LED2
-#define TASK_DELAY_2			33 		//1/66ms =  ~15.15Hz
+#define TASK_DELAY_2			33 		//1/66ms = 15.15Hz
 //LED3
 #define TASK_DELAY_3			30		//1/60ms = 16.66Hz
-	//The one we are using today:
-	//#define TASK_DELAY_4			16		//1/32ms = 31.25Hz
-	//#define TASK_DELAY_4			25		//1/2*xms = 20Hz
-	//#define TASK_DELAY_4			20		//1/2*xms = 25Hz
 /**< Timer period. LED1 timer will expire after 1000 ms */
 
 /**@brief LED0 task entry function.
@@ -156,10 +146,9 @@ int main(void)
     nrf_gpio_pin_set(CUSTOM_LED_4);
 
     UNUSED_VARIABLE(xTaskCreate( vLed0Function, "L0", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed0Handle ));    // LED0 task creation
-	  UNUSED_VARIABLE(xTaskCreate( vLed1Function, "L1", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed1Handle ));
+	  UNUSED_VARIABLE(xTaskCreate( vLed1Function, "L1", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed1Handle ));		
 		UNUSED_VARIABLE(xTaskCreate( vLed2Function, "L2", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed2Handle ));
 		UNUSED_VARIABLE(xTaskCreate( vLed3Function, "L3", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed3Handle ));
-		//UNUSED_VARIABLE(xTaskCreate( vLed4Function, "L3", configMINIMAL_STACK_SIZE + 200, NULL, 2, &xLed3Handle ));  
 		
 		
 		//xLed1Handle = xTimerCreate( "L1", TIMER_PERIOD, pdTRUE, NULL, vLed1Callback );                                 // LED1 timer creation
