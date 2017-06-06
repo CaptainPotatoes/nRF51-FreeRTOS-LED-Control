@@ -41,14 +41,26 @@
 #define CUSTOM_LED_2 14
 #define CUSTOM_LED_3 15
 #define CUSTOM_LED_4 16
+/** Setup #1:
 //LED0
-#define TASK_DELAY        50    /**< Task delay - 10 Hz */
+#define TASK_DELAY        50    //1/100ms = 10.00Hz 
 //LED1
-#define TASK_DELAY_1			40		//1/2*40ms = 12.5Hz
+#define TASK_DELAY_1			40		//1/80ms = 12.50Hz (+2.50)
 //LED2
-#define TASK_DELAY_2			33 		//1/66ms = 15.15Hz
+#define TASK_DELAY_2			33 		//1/66ms = 15.15Hz (+2.65)
 //LED3
-#define TASK_DELAY_3			30		//1/60ms = 16.66Hz
+#define TASK_DELAY_3			30		//1/60ms = 16.66Hz (+1.52)
+*/
+/** Setup #2: */
+//LED0
+#define TASK_DELAY        55    //1/110ms = 9.090 Hz
+//LED1
+#define TASK_DELAY_1			45		//1/90ms = 11.111 Hz (+2.020)
+//LED2
+#define TASK_DELAY_2			30 		//1/60ms = 16.667 Hz (+5.555)
+//LED3
+#define TASK_DELAY_3			27		//1/54ms = 18.518 Hz (+1.851)
+
 /**< Timer period. LED1 timer will expire after 1000 ms */
 
 /**@brief LED0 task entry function.
